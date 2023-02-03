@@ -2,6 +2,10 @@
 declare(strict_types=1);
 namespace App\Controller;
 
+use Cake\Mailer\Email;
+use Cake\Mailer\Mailer;
+use Cake\Mailer\TransportFactory;
+
 /**
  * Users Controller
  * 
@@ -190,4 +194,28 @@ class UsersController extends AppController
 
     }
 
+    // email send function
+
+    public function email()
+    {
+        $user = $this->Users->newEmptyEntity();
+
+        if ($this->request->is('post')) {
+
+            $email = $this->request->getData('email');
+
+            $mailer = new Mailer('default');
+            $mailer->setTransport('gmail'); //your email configuration name
+            $mailer->setFrom(['moudgil3108@gmail.com' => 'parbhat']);
+            $mailer->setTo($email);
+            $mailer->setEmailFormat('html');
+            $mailer->setSubject('Verify New Account');
+            $mailer->deliver('Hi <br/>here is your new password link.');
+
+            $this->Flash->success(__('send mail successfully.'));
+            return $this->redirect(['action' => 'index']);
+
+        }
+        $this->set(compact('user'));
+    }
 }

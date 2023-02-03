@@ -8,7 +8,6 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-
 /**
  * Users Model
  *
@@ -55,75 +54,24 @@ class UsersTable extends Table
             ->scalar('first_name')
             ->maxLength('first_name', 255)
             ->requirePresence('first_name', 'create')
-            ->notEmptyString('first_name')
-            ->add(
-                'first_name',
-                [
-                    'first_name' => [
-                        'rule' => array('custom', '/^[A-Za-z_]*$/'),
-                        'message' => 'Please enter Letters Only.'
-                    ],
-
-                ]
-            );
+            ->notEmptyString('first_name');
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
-            ->notEmptyString('email')
-
-        ;
+            ->notEmptyString('email');
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
-            ->notEmptyString('password', 'Please enter password')
-            ->add('password', [
-                'Numeric' => [
-                    'rule' => ['custom', '/[0-9]/'],
-                    'message' => 'password should contain at least 1 number',
-                ],
-                'uppercase' => [
-                    'rule' => ['custom', '/[A-Z]{1,}/'],
-                    'message' => 'password should contain at least upper case letter',
-                ],
-                'lowercase' => [
-                    'rule' => ['custom', '/[a-z]/'],
-                    'message' => 'password should contain at least lowercase case letter',
-                ],
-                'specialcharacter' => [
-                    'rule' => ['custom', '/[!@ #$%^&*()_+\-=\[\]{};,.<>]/'],
-                    'message' => 'Password should contain at least 1 special characters',
-                ],
-                'whitespace' => [
-                    'rule' => ['custom', '/^\S+$/'],
-                    'message' => 'no white space allowed',
-                ]
-            ])
-        ;
+            ->notEmptyString('password');
+
         $validator
             ->scalar('age')
             ->maxLength('age', 255)
             ->requirePresence('age', 'create')
-            ->notEmptyString('age')
-            ->add('age', 'custom', [
-                'rule' => function ($value, $context) {
-                    if (!$value) {
-                        return false;
-                    }
-
-                    if ($value < 10) {
-                        return 'Age is not less than 18';
-                    }
-
-                    if ($value > 35) {
-                        return 'Age is not greater than 35';
-                    }
-
-                    return true;
-                },
-            ]);
+            ->notEmptyString('age');
 
         $validator
             ->scalar('gender')
@@ -138,18 +86,10 @@ class UsersTable extends Table
             ->notEmptyString('phone_number');
 
         $validator
-            ->allowEmptyFile('image_file')
-            ->add('image_file', [
-                'mimeType' => [
-                    'rule' => ['mimeType', ['image/jpg', 'image/png', 'image/jpeg']],
-                    'message' => 'Please upload only jpg and png.',
-                ],
-                'fileSize' => [
-                    'rule' => ['fileSize', '<=', '1MB'],
-                    'message' => 'Image file size must be less than 1MB.',
-                ],
-            ]);
-
+            ->scalar('image')
+            ->maxLength('image', 255)
+            ->requirePresence('image', 'create')
+            ->notEmptyFile('image');
         return $validator;
     }
 

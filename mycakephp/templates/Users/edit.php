@@ -7,7 +7,9 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
+            <h4 class="heading">
+                <?= __('Actions') ?>
+            </h4>
             <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $user->id],
@@ -22,12 +24,12 @@
             <fieldset>
                 <legend><?= __('Edit User') ?></legend>
                 <?php
-                    echo $this->Form->control('first_name');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('password');
-                    echo $this->Form->control('age');
-                    echo $this->Form->control('gender');
-                    echo $this->Form->control('phone_number');
+                echo $this->Form->control('first_name', ['required' => false]);
+                echo $this->Form->control('email', ['required' => false]);
+                echo $this->Form->control('password', ['required' => false]);
+                echo $this->Form->control('age', ['required' => false]);
+                echo $this->Form->control('gender', ['required' => false]);
+                echo $this->Form->control('phone_number', ['required' => false]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

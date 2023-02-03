@@ -26,6 +26,7 @@ class UsersFixture extends TestFixture
                 'age' => 'Lorem ipsum dolor sit amet',
                 'gender' => 'Lorem ip',
                 'phone_number' => 'Lorem ipsum dolor sit amet',
+                'image' => 'Lorem ipsum dolor sit amet',
             ],
         ];
         parent::init();

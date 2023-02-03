@@ -1,13 +1,13 @@
 <?php
+use PharIo\Manifest\Type;
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
 ?>
 <style>
-    .error-message {
-        color: red
-    }
+    .error-message {}
 </style>
 <div class="row">
     <aside class="column">
@@ -38,7 +38,7 @@
                         'label' => 'Gender',
                         'type' => 'radio',
                         'legend' => false,
-                        'required' => true,
+                        'required' => false,
                         'hiddenField' => false,
                         'options' => array(
                             1 => 'Male',
@@ -60,5 +60,5 @@
     </div>
 </div>
 
-<?= $this->Html->script('validation') ?>
-<?= $this->fetch('script') ?>
+<!-- <?= $this->Html->script('validation') ?>
+<?= $this->fetch('script') ?> -->
